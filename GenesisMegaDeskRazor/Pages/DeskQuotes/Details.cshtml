@@ -1,0 +1,19 @@
+﻿@page
+@model GenesisMegaDeskRazor.Pages.DeskQuotes.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>DeskQuote</h4>
+    <hr />
+    <dl class="row">
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.DeskQuote?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
