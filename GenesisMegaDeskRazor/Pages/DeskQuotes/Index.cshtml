@@ -13,12 +13,54 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DeskQuote[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeskQuote[0].BaseDeskPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeskQuote[0].AdditionalSqInchCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeskQuote[0].DrawerCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeskQuote[0].SurfaceMaterialCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeskQuote[0].RushOrderCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeskQuote[0].TotalPrice)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.DeskQuote) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaseDeskPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditionalSqInchCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrawerCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SurfaceMaterialCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RushOrderCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |

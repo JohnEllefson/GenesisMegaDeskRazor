@@ -17,21 +17,11 @@
         public const int MinDepth = 12;
         public const int MaxDepth = 48;
 
-
         public int Id { get; set; }
         public int Width { get; set; }
         public int Depth { get; set; }
         public int NumberOfDrawers { get; set; }
         public DesktopMaterial DesktopMaterial { get; set; }
         public int RushOrderDays { get; set; }
-
-        public Desk(int width, int depth, int numberOfDrawers, DesktopMaterial desktopMaterial, int rushOrderDays)
-        {
-            Width = width;
-            Depth = depth;
-            NumberOfDrawers = numberOfDrawers;
-            DesktopMaterial = desktopMaterial;
-            RushOrderDays = rushOrderDays;
-        }
     }
 }

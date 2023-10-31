@@ -15,6 +15,41 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="DeskQuote.Id" />
             <div class="form-group">
+                <label asp-for="DeskQuote.Date" class="control-label"></label>
+                <input asp-for="DeskQuote.Date" class="form-control" />
+                <span asp-validation-for="DeskQuote.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeskQuote.BaseDeskPrice" class="control-label"></label>
+                <input asp-for="DeskQuote.BaseDeskPrice" class="form-control" />
+                <span asp-validation-for="DeskQuote.BaseDeskPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeskQuote.AdditionalSqInchCost" class="control-label"></label>
+                <input asp-for="DeskQuote.AdditionalSqInchCost" class="form-control" />
+                <span asp-validation-for="DeskQuote.AdditionalSqInchCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeskQuote.DrawerCost" class="control-label"></label>
+                <input asp-for="DeskQuote.DrawerCost" class="form-control" />
+                <span asp-validation-for="DeskQuote.DrawerCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeskQuote.SurfaceMaterialCost" class="control-label"></label>
+                <input asp-for="DeskQuote.SurfaceMaterialCost" class="form-control" />
+                <span asp-validation-for="DeskQuote.SurfaceMaterialCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeskQuote.RushOrderCost" class="control-label"></label>
+                <input asp-for="DeskQuote.RushOrderCost" class="form-control" />
+                <span asp-validation-for="DeskQuote.RushOrderCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeskQuote.TotalPrice" class="control-label"></label>
+                <input asp-for="DeskQuote.TotalPrice" class="form-control" />
+                <span asp-validation-for="DeskQuote.TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
