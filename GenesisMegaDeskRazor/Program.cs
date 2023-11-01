@@ -1,10 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.AspNetCore.Session;
 using GenesisMegaDeskRazor.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
 builder.Services.AddDbContext<GenesisMegaDeskRazorContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("GenesisMegaDeskRazorContext") ?? throw new InvalidOperationException("Connection string 'GenesisMegaDeskRazorContext' not found.")));
 
@@ -20,7 +26,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseCookiePolicy();
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();

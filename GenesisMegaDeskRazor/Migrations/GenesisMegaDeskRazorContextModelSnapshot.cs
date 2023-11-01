@@ -22,6 +22,38 @@ namespace GenesisMegaDeskRazor.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("GenesisMegaDeskRazor.Models.Desk", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Depth")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Material")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberOfDrawers")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RushOrderDays")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Width")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Desk");
+                });
+
             modelBuilder.Entity("GenesisMegaDeskRazor.Models.DeskQuote", b =>
                 {
                     b.Property<int>("Id")
@@ -39,6 +71,9 @@ namespace GenesisMegaDeskRazor.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DeskId")
+                        .HasColumnType("int");
+
                     b.Property<double>("DrawerCost")
                         .HasColumnType("float");
 
@@ -53,7 +88,20 @@ namespace GenesisMegaDeskRazor.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DeskId");
+
                     b.ToTable("DeskQuote");
+                });
+
+            modelBuilder.Entity("GenesisMegaDeskRazor.Models.DeskQuote", b =>
+                {
+                    b.HasOne("GenesisMegaDeskRazor.Models.Desk", "Desk")
+                        .WithMany()
+                        .HasForeignKey("DeskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Desk");
                 });
 #pragma warning restore 612, 618
         }
