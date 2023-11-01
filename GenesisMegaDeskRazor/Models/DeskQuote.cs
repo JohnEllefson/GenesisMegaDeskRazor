@@ -9,10 +9,6 @@ namespace GenesisMegaDeskRazor.Models
     {
         public int Id { get; set; }
         [JsonProperty]
-        public Desk Desk;
-        [JsonProperty]
-        public string CustomerName;
-        [JsonProperty]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
         public double BaseDeskPrice { get; set; }
@@ -23,5 +19,6 @@ namespace GenesisMegaDeskRazor.Models
         [JsonProperty]
         public double TotalPrice { get; set; }
         public double[,]? rushOrderPrices;
+        public int DeskId { get; set; }
     }
 }
