@@ -1,5 +1,5 @@
 ﻿@page
-@model GenesisMegaDeskRazor.Pages.DeskQuotes.IndexModel
+@model GenesisMegaDeskRazor.Models.CompositeModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,31 +14,35 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DeskQuote[0].Date)
+                @Html.DisplayNameFor(model => model.Desk.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeskQuote[0].BaseDeskPrice)
+                @Html.DisplayNameFor(model => model.DeskQuote.Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeskQuote[0].AdditionalSqInchCost)
+                @Html.DisplayNameFor(model => model.Desk.RushOrderDays)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeskQuote[0].DrawerCost)
+                @Html.DisplayNameFor(model => model.Desk.Material)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeskQuote[0].SurfaceMaterialCost)
+                @Html.DisplayNameFor(model => model.Desk.NumberOfDrawers)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeskQuote[0].RushOrderCost)
+                @Html.DisplayNameFor(model => model.Desk.Width)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeskQuote[0].TotalPrice)
+                @Html.DisplayNameFor(model => model.Desk.Depth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeskQuote.TotalPrice)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.DeskQuote) {
+        @foreach (var item in Model.DeskQuote)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
@@ -60,7 +64,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
+            </td> 
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
