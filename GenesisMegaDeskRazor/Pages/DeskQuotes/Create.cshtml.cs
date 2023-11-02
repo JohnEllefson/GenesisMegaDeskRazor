@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace GenesisMegaDeskRazor.Pages.DeskQuotes
 {
@@ -14,21 +15,20 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
             _context = context;
         }
 
-        [BindProperty(SupportsGet = true)]
-        public int deskId { get; set; }
         public Desk Desk { get; set; } = new Desk();
         public Desk.DesktopMaterial Material { get; set; }
         [BindProperty]
         public DeskQuote DeskQuote { get; set; } = new DeskQuote();
 
-        public async Task<IActionResult> OnGetAsync(int deskId)
+        public async Task<IActionResult> OnGetAsync()
         {
 
-            Desk = await _context.Desk.SingleOrDefaultAsync(m => m.Id == deskId);
+            string deskData = HttpContext.Session.GetString("DeskData");
+            Desk = JsonConvert.DeserializeObject<Desk>(deskData);
 
             Material = Desk.Material;
 
-            DeskQuote.DeskId = deskId;
+            DeskQuote.DeskId = Desk.Id;
             DeskQuote.Date = DateTime.Today;
             DeskQuote.AdditionalSqInchCost = CalcAdditionalSqInchCost();
             DeskQuote.DrawerCost = CalcDrawerCost();
@@ -39,20 +39,21 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
             return Page();
         }
 
-
-
-
-
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || _context.DeskQuote == null || DeskQuote == null)
+            if (!ModelState.IsValid || _context.DeskQuote == null || DeskQuote == null || Desk == null || _context.Desk == null)
             {
                 return Page();
             }
 
             _context.DeskQuote.Add(DeskQuote);
+            _context.Desk.Add(Desk);
+
+       
             await _context.SaveChangesAsync();
+
+            HttpContext.Session.Remove("DeskData");
 
             return RedirectToPage("./Index");
         }
@@ -130,7 +131,7 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
         {
             try
             {
-                string filePath = "/rushOrderPrices.txt";
+                string filePath = "rushOrderPrices.txt";
                 string[] lines = System.IO.File.ReadAllLines(filePath);
 
                 // Initialize the existing class-level 2D array with three rows and three columns

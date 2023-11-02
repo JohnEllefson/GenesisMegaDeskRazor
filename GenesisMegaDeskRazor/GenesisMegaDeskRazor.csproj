@@ -26,4 +26,8 @@
     <Folder Include="Resources\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\base-desk.jpg" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace GenesisMegaDeskRazor.Models
 {
@@ -12,6 +13,7 @@ namespace GenesisMegaDeskRazor.Models
         public const int MinDepth = 12;
         public const int MaxDepth = 48;
 
+        [BindProperty(SupportsGet = true)]
         public int Id { get; set; }
         public string Name { get; set; }
         public int Width { get; set; }
