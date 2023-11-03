@@ -1,5 +1,5 @@
 ﻿@page
-@model GenesisMegaDeskRazor.Models.CompositeModel
+@model GenesisMegaDeskRazor.Pages.DeskQuotes.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -10,67 +10,85 @@
 <p>
     <a asp-page="/Desks/Create">Create New</a>
 </p>
+
+<form>
+    <p>
+        <div style="padding-bottom: 10px;">
+            Search Name: <input type="text" asp-for="NameSearchString" />
+        </div>
+        <div style="padding-bottom: 20px;">
+        Sort By: <select asp-for="SortOption" asp-items="Model.SortOptions">
+            <option value="">None</option>
+        </select>
+        </div>
+        <input style="width: 290px;" type="submit" value="Apply" />
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Desk.Name)
+                Customer Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeskQuote.Date)
+                Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Desk.RushOrderDays)
+                Rush Order Days
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Desk.Material)
+                Desktop Material
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Desk.NumberOfDrawers)
+                Drawers Number
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Desk.Width)
+                Width
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Desk.Depth)
+                Depth
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeskQuote.TotalPrice)
+                Total Price
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.DeskQuote)
+        @foreach (var item in Model.QuoteDataRows)
         {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @Html.DisplayFor(modelItem => item.CustomerName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BaseDeskPrice)
+                @Html.DisplayFor(modelItem => item.Date, "{0:MM/dd/yyyy}")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AdditionalSqInchCost)
+                @Html.DisplayFor(modelItem => item.RushOrderDays)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DrawerCost)
+                @Html.DisplayFor(modelItem => item.DeskMaterial)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SurfaceMaterialCost)
+                @Html.DisplayFor(modelItem => item.DrawersNum)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RushOrderCost)
+                @Html.DisplayFor(modelItem => item.Width)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Depth)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalPrice)
             </td> 
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.DeskQuoteId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.DeskQuoteId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.DeskQuoteId">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

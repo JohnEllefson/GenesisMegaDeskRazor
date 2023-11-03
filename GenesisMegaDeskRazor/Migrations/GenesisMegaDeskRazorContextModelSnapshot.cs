@@ -37,7 +37,6 @@ namespace GenesisMegaDeskRazor.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumberOfDrawers")
@@ -88,20 +87,7 @@ namespace GenesisMegaDeskRazor.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DeskId");
-
                     b.ToTable("DeskQuote");
-                });
-
-            modelBuilder.Entity("GenesisMegaDeskRazor.Models.DeskQuote", b =>
-                {
-                    b.HasOne("GenesisMegaDeskRazor.Models.Desk", "Desk")
-                        .WithMany()
-                        .HasForeignKey("DeskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Desk");
                 });
 #pragma warning restore 612, 618
         }
