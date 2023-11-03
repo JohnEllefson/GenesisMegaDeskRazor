@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.AspNetCore.Session;
 using GenesisMegaDeskRazor.Data;
+using GenesisMegaDeskRazor.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,13 @@ builder.Services.AddDbContext<GenesisMegaDeskRazorContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("GenesisMegaDeskRazorContext") ?? throw new InvalidOperationException("Connection string 'GenesisMegaDeskRazorContext' not found.")));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

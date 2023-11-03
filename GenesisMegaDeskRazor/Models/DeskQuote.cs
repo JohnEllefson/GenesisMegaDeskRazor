@@ -9,7 +9,6 @@ namespace GenesisMegaDeskRazor.Models
     {
 
         public int Id { get; set; }
-        [JsonProperty]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
         public double BaseDeskPrice = 200;

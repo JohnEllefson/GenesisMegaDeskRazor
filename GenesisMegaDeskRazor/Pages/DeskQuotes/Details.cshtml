@@ -8,50 +8,56 @@
 <h1>Details</h1>
 
 <div>
-    <h4>DeskQuote</h4>
+    <h4>Desk Quote</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DeskQuote.Date)
+            Customer Name
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DeskQuote.Date)
+            @Html.DisplayFor(model => model.DetailsData.CustomerName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DeskQuote.BaseDeskPrice)
+            Date
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DeskQuote.BaseDeskPrice)
+            @Html.DisplayFor(model => model.DetailsData.Date)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DeskQuote.AdditionalSqInchCost)
+            Rush Order Days
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DeskQuote.AdditionalSqInchCost)
+            @Html.DisplayFor(model => model.DetailsData.RushOrderDays)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DeskQuote.DrawerCost)
+            Desktop Material
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DeskQuote.DrawerCost)
+            @Html.DisplayFor(model => model.DetailsData.DeskMaterial)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DeskQuote.SurfaceMaterialCost)
+            Drawers Number
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DeskQuote.SurfaceMaterialCost)
+            @Html.DisplayFor(model => model.DetailsData.DrawersNum)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DeskQuote.RushOrderCost)
+            Width
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DeskQuote.RushOrderCost)
+            @Html.DisplayFor(model => model.DetailsData.Width)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DeskQuote.TotalPrice)
+            Depth
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DeskQuote.TotalPrice)
+            @Html.DisplayFor(model => model.DetailsData.Depth)
+        </dd>
+        <dt class="col-sm-2">
+            Total Price
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DetailsData.TotalPrice)
         </dd>
     </dl>
 </div>
