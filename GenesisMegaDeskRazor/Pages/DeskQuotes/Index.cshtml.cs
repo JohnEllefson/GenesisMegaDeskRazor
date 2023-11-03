@@ -56,7 +56,7 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
         {
             var orderedData = (from desk in _context.Desk
                                join deskQuote in _context.DeskQuote
-                               on desk.Id equals deskQuote.Id
+                               on desk.Id equals deskQuote.DeskId
                                select new { DeskTable = desk, QuoteTable = deskQuote }).ToList();
 
             SortOptions = new SelectList(new List<SelectListItem>
@@ -74,7 +74,7 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
                     orderedData = (from desk in _context.Desk
                                    where desk.Name.Contains(NameSearchString)
                                    join deskQuote in _context.DeskQuote
-                                   on desk.Id equals deskQuote.Id
+                                   on desk.Id equals deskQuote.DeskId
                                    orderby desk.Name
                                    select new { DeskTable = desk, QuoteTable = deskQuote }).ToList();
                 }
@@ -83,7 +83,7 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
                     orderedData = (from desk in _context.Desk
                                    where desk.Name.Contains(NameSearchString)
                                    join deskQuote in _context.DeskQuote
-                                   on desk.Id equals deskQuote.Id
+                                   on desk.Id equals deskQuote.DeskId
                                    orderby deskQuote.Date
                                    select new { DeskTable = desk, QuoteTable = deskQuote }).ToList();
                 }
@@ -92,7 +92,7 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
                     orderedData = (from desk in _context.Desk
                                    where desk.Name.Contains(NameSearchString)
                                    join deskQuote in _context.DeskQuote
-                                   on desk.Id equals deskQuote.Id
+                                   on desk.Id equals deskQuote.DeskId
                                    select new { DeskTable = desk, QuoteTable = deskQuote }).ToList();
                 }
             }
@@ -102,7 +102,7 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
                 {
                     orderedData = (from desk in _context.Desk
                                    join deskQuote in _context.DeskQuote
-                                   on desk.Id equals deskQuote.Id
+                                   on desk.Id equals deskQuote.DeskId
                                    orderby desk.Name
                                    select new { DeskTable = desk, QuoteTable = deskQuote }).ToList();
                 }
@@ -110,7 +110,7 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
                 {
                     orderedData = (from desk in _context.Desk
                                    join deskQuote in _context.DeskQuote
-                                   on desk.Id equals deskQuote.Id
+                                   on desk.Id equals deskQuote.DeskId
                                    orderby deskQuote.Date
                                    select new { DeskTable = desk, QuoteTable = deskQuote }).ToList();
                 }
@@ -118,7 +118,7 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
                 {
                     orderedData = (from desk in _context.Desk
                                    join deskQuote in _context.DeskQuote
-                                   on desk.Id equals deskQuote.Id
+                                   on desk.Id equals deskQuote.DeskId
                                    select new { DeskTable = desk, QuoteTable = deskQuote }).ToList();
                 }
             }
