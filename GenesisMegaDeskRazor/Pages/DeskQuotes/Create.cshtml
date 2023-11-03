@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model GenesisMegaDeskRazor.Pages.DeskQuotes.CreateModel
 
 @{
@@ -87,8 +87,18 @@
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <button id="backButton" class="btn btn-primary" onclick="OnBackButtonClick()">Back</button>
+
 </div>
+<script>
+    function OnBackButtonClick(){
+
+        var deskId = document.querySelector('[name="DeskQuote.DeskId"]').value;
+        window.location.href = '/Desks/Create';
+
+    };
+</script>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

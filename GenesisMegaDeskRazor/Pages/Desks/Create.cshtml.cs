@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using GenesisMegaDeskRazor.Data;
 using GenesisMegaDeskRazor.Models;
 using Newtonsoft.Json;
+using Microsoft.CodeAnalysis;
 
 namespace GenesisMegaDeskRazor.Pages.Desks
 {
@@ -22,8 +23,15 @@ namespace GenesisMegaDeskRazor.Pages.Desks
 
         [BindProperty]
         public Desk Desk { get; set; }
-        public IActionResult OnGet()
+ 
+        public async Task<IActionResult> OnGet()
         {
+            if (HttpContext.Session.TryGetValue("DeskData", out byte[] data))
+            {
+                string deskData = HttpContext.Session.GetString("DeskData");
+                Desk = JsonConvert.DeserializeObject<Desk>(deskData);
+            }
+
             return Page();
         }
 
@@ -38,13 +46,40 @@ namespace GenesisMegaDeskRazor.Pages.Desks
                 return Page();
             }
 
-            _context.Desk.Add(Desk);
-            await _context.SaveChangesAsync();
-            int deskId = Desk.Id;
+            //var deskId = DeskId;
+            if (ValidateDesk(Desk))
+            {
+                HttpContext.Session.SetString("DeskData", JsonConvert.SerializeObject(Desk));
+                // _context.Desk.Add(Desk);
+                // await _context.SaveChangesAsync();
+                // var deskId = Desk.Id;
 
-            string url = Url.Page("../DeskQuotes/Create", new { deskId = deskId });
+                // string url = Url.Page("../DeskQuotes/Create", new { deskId = deskId });
 
-            return Redirect(url);
+                return RedirectToPage("../DeskQuotes/Create");
+            }
+            else
+            {
+                return Page();
+            }
+        }
+
+        public bool ValidateDesk(Desk ThisDesk)
+        {
+            bool width = true;
+            bool depth = true;
+            if (ThisDesk.Width < Desk.MinWidth || ThisDesk.Width > Desk.MaxWidth)
+            {
+                TempData["Message"] = $"Desk width must be between {Desk.MinWidth} and {Desk.MaxWidth} inches.";
+                width = false;
+            }
+            if (ThisDesk.Depth < Desk.MinDepth || ThisDesk.Depth > Desk.MaxDepth)
+            {
+                TempData["Message"] = $"Desk depth must be between {Desk.MinDepth} and {Desk.MaxDepth} inches.";
+                depth = false;
+            }
+
+            return width & depth;
         }
     }
 }
