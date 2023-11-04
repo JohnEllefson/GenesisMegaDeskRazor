@@ -8,46 +8,69 @@
 <h1>Edit</h1>
 
 <h4>Desk Quote</h4>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="DeskQuote.Id" />
+            <input type="hidden" asp-for="DetailsData.DeskQuoteId" />
             <div class="form-group">
-                <label asp-for="DeskQuote.Date" class="control-label"></label>
-                <input asp-for="DeskQuote.Date" class="form-control" />
-                <span asp-validation-for="DeskQuote.Date" class="text-danger"></span>
+                Customer Name
+                <input asp-for="DetailsData.CustomerName" class="form-control" />
+                <span asp-validation-for="DetailsData.CustomerName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DeskQuote.BaseDeskPrice" class="control-label"></label>
-                <input asp-for="DeskQuote.BaseDeskPrice" class="form-control" />
-                <span asp-validation-for="DeskQuote.BaseDeskPrice" class="text-danger"></span>
+                Date
+                <input asp-for="DetailsData.Date" class="form-control" />
+                <span asp-validation-for="DetailsData.Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DeskQuote.AdditionalSqInchCost" class="control-label"></label>
-                <input asp-for="DeskQuote.AdditionalSqInchCost" class="form-control" />
-                <span asp-validation-for="DeskQuote.AdditionalSqInchCost" class="text-danger"></span>
+                Rush Order Days
+                <select asp-for="DetailsData.RushOrderDays" class="form-control">
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="7">7</option>
+                    <option value="14">14 (No Rush)</option>
+                </select>
+                <span asp-validation-for="DetailsData.RushOrderDays" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DeskQuote.DrawerCost" class="control-label"></label>
-                <input asp-for="DeskQuote.DrawerCost" class="form-control" />
-                <span asp-validation-for="DeskQuote.DrawerCost" class="text-danger"></span>
+                Desktop Material
+                <select asp-for="DetailsData.DeskMaterial" class="form-control"
+                        asp-items="Html.GetEnumSelectList<GenesisMegaDeskRazor.Models.Desk.DesktopMaterial>()"
+                        onchange="changeImage(this)">
+                </select>
+                <div class="image-container">
+                    <img src="@Model.DetermineInitialWood()" alt="Overlay Image" id="material-image" width="500" height="100" />
+                </div>
+                <span asp-validation-for="DetailsData.DeskMaterial" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DeskQuote.SurfaceMaterialCost" class="control-label"></label>
-                <input asp-for="DeskQuote.SurfaceMaterialCost" class="form-control" />
-                <span asp-validation-for="DeskQuote.SurfaceMaterialCost" class="text-danger"></span>
+                Drawers Number
+                <select asp-for="DetailsData.DrawersNum" class="form-control">
+                    @for (int i = 0; i <= 7; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <span asp-validation-for="DetailsData.DrawersNum" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DeskQuote.RushOrderCost" class="control-label"></label>
-                <input asp-for="DeskQuote.RushOrderCost" class="form-control" />
-                <span asp-validation-for="DeskQuote.RushOrderCost" class="text-danger"></span>
+                Width
+                <input asp-for="DetailsData.Width" class="form-control" />
+                <span asp-validation-for="DetailsData.Width" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DeskQuote.TotalPrice" class="control-label"></label>
-                <input asp-for="DeskQuote.TotalPrice" class="form-control" />
-                <span asp-validation-for="DeskQuote.TotalPrice" class="text-danger"></span>
+                Depth
+                <input asp-for="DetailsData.Depth" class="form-control" />
+                <span asp-validation-for="DetailsData.Depth" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -59,6 +82,14 @@
 <div>
     <a asp-page="./Index">Back to List</a>
 </div>
+
+<script>
+    function changeImage(dropdown) {
+        var selectedMaterial = dropdown.options[dropdown.selectedIndex].text;
+        var materialImage = document.getElementById("material-image");
+        materialImage.src = '@Url.Content("~/Images/")' + selectedMaterial + ".jpg";
+    }
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

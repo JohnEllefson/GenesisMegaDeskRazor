@@ -36,7 +36,6 @@ namespace GenesisMegaDeskRazor.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BaseDeskPrice = table.Column<double>(type: "float", nullable: false),
                     AdditionalSqInchCost = table.Column<double>(type: "float", nullable: false),
                     DrawerCost = table.Column<double>(type: "float", nullable: false),
                     SurfaceMaterialCost = table.Column<double>(type: "float", nullable: false),

@@ -22,7 +22,6 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
 
         public async Task<IActionResult> OnGetAsync()
         {
-
             string deskData = HttpContext.Session.GetString("DeskData");
             Desk = JsonConvert.DeserializeObject<Desk>(deskData);
 
@@ -31,11 +30,6 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
             // DeskQuote.DeskId = Desk.Id;
             DeskQuote.Date = DateTime.Today;
             DeskQuote.CalcTotalPrice(Desk);
-           // DeskQuote.AdditionalSqInchCost = CalcAdditionalSqInchCost();
-            //DeskQuote.DrawerCost = CalcDrawerCost();
-            //DeskQuote.SurfaceMaterialCost = CalcSurfaceMaterialCost();
-            //DeskQuote.RushOrderCost = CalcRushOrderCost();
-            //DeskQuote.TotalPrice = CalcTotalPrice();
 
             return Page();
         }

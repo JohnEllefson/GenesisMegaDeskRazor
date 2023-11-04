@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GenesisMegaDeskRazor.Migrations
 {
     [DbContext(typeof(GenesisMegaDeskRazorContext))]
-    [Migration("20231103042009_InitialCreate")]
+    [Migration("20231104033331_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -65,9 +65,6 @@ namespace GenesisMegaDeskRazor.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<double>("AdditionalSqInchCost")
-                        .HasColumnType("float");
-
-                    b.Property<double>("BaseDeskPrice")
                         .HasColumnType("float");
 
                     b.Property<DateTime>("Date")

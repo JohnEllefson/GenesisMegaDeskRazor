@@ -63,7 +63,11 @@
                 @Html.DisplayFor(modelItem => item.CustomerName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date, "{0:MM/dd/yyyy}")
+                    @{
+                        var date = item.Date;
+                        var formattedDate = date.ToString("yyyy-MM-dd");
+                    }
+                @formattedDate
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RushOrderDays)
