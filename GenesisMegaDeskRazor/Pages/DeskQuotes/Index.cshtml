@@ -5,27 +5,37 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>MegaDesk Quotes</h1>
 
 <p>
-    <a asp-page="/Desks/Create">Create New</a>
+    <a class="btn btn-secondary btn-lg" asp-page="/Desks/Create">New Quote</a>
 </p>
 
-<form>
-    <p>
-        <div style="padding-bottom: 10px;">
-            Search Name: <input type="text" asp-for="NameSearchString" />
+<div class="w-50 mx-auto">
+    <form>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label for="NameSearchString">Search Name:</label>
+                <input type="text" class="form-control form-control-sm" id="NameSearchString" asp-for="NameSearchString" placeholder="Enter a name">
+            </div>
+            <div class="col-md-6">
+                <label for="SortOption">Sort By:</label>
+                <select class="form-control form-control-sm" id="SortOption" asp-for="SortOption" asp-items="Model.SortOptions">
+                    <option value="">None</option>
+                </select>
+            </div>
         </div>
-        <div style="padding-bottom: 20px;">
-        Sort By: <select asp-for="SortOption" asp-items="Model.SortOptions">
-            <option value="">None</option>
-        </select>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary mt-2">Apply</button>
         </div>
-        <input style="width: 290px;" type="submit" value="Apply" />
-    </p>
-</form>
+    </form>
+</div>
 
-<table class="table">
+
+<br />
+
+
+<table class="table table-dark">
     <thead>
         <tr>
             <th>
