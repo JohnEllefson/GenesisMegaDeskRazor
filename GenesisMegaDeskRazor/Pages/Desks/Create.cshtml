@@ -1,9 +1,8 @@
-﻿@page 
+﻿@page
 @model GenesisMegaDeskRazor.Pages.Desks.CreateModel
 
-
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Desk Quote";
 }
 
 <h1>Create</h1>
@@ -17,64 +16,96 @@
 }
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
+        <!-- Increase the column width to make the form narrower -->
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Desk.Name" class="control-label"></label>
-                <input asp-for="Desk.Name" class="form-control" />
-                <span asp-validation-for="Desk.Name" class="text-danger"></span>
-            </div><div class="form-group">
-                <label asp-for="Desk.Width" class="control-label"></label>
-                <input asp-for="Desk.Width" class="form-control" />
-                <span asp-validation-for="Desk.Width" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Desk.Depth" class="control-label"></label>
-                <input asp-for="Desk.Depth" class="form-control" />
-                <span asp-validation-for="Desk.Depth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Desk.NumberOfDrawers" class="control-label"></label>
-                <select  asp-for="Desk.NumberOfDrawers" class="form-control">
-                    @for (int i = 0; i <= 7; i++)
-                    {
-                        <option value="@i">@i</option>
-                    }
-                </select>
-                <span asp-validation-for="Desk.NumberOfDrawers" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Desk.Material" class="control-label"></label>
-                <select asp-for="Desk.Material" class="form-control" 
-                    asp-items="Html.GetEnumSelectList<GenesisMegaDeskRazor.Models.Desk.DesktopMaterial>()"
-                        onchange="changeImage(this)">
-                    </select>
-                <div class="image-container">
-                    <img src="~/Images/Pine.jpg" alt="Overlay Image" id="material-image" width="500" height="100" />
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label asp-for="Desk.Name" class="control-label">Desk Name</label>
+                    <input asp-for="Desk.Name" class="form-control" />
+                    <span asp-validation-for="Desk.Name" class="text-danger"></span>
                 </div>
-                <span asp-validation-for="Desk.Material" class="text-danger"></span>
+                <div class="col-md-6">
+                    <label asp-for="Desk.Width" class="control-label">Width</label>
+                    <input asp-for="Desk.Width" class="form-control" />
+                    <span asp-validation-for="Desk.Width" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Desk.RushOrderDays" class="control-label"></label>
-                <select asp-for="Desk.RushOrderDays" class="form-control">
-                    <option value="3">3</option>
-                    <option value="5">5</option>
-                    <option value="7">7</option>
-                    <option value="14">14 (No Rush)</option>
-                </select>
-                <span asp-validation-for="Desk.RushOrderDays" class="text-danger"></span>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label asp-for="Desk.Depth" class="control-label">Depth</label>
+                    <input asp-for="Desk.Depth" class="form-control" />
+                    <span asp-validation-for="Desk.Depth" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Desk.NumberOfDrawers" class="control-label">Number of Drawers</label>
+                    <select asp-for="Desk.NumberOfDrawers" class="form-control">
+                        @for (int i = 0; i <= 7; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Desk.NumberOfDrawers" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label asp-for="Desk.RushOrderDays" class="control-label">Rush Order Days</label>
+                    <select asp-for="Desk.RushOrderDays" class="form-control">
+                        <option value="3">3</option>
+                        <option value="5">5</option>
+                        <option value="7">7</option>
+                        <option value="14">14 (No Rush)</option>
+                    </select>
+                    <span asp-validation-for="Desk.RushOrderDays" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Desk.Material" class="control-label">Desk Material</label>
+                    <select asp-for="Desk.Material" class="form-control"
+                            asp-items="Html.GetEnumSelectList<GenesisMegaDeskRazor.Models.Desk.DesktopMaterial>()"
+                            onchange="changeImage(this)">
+                    </select>
+                    <span asp-validation-for="Desk.Material" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label class="control-label">Material Preview</label>
+                    <div class="image-container">
+                        <img src="~/Images/Pine.jpg" alt="Overlay Image" id="material-image" width="300" height="200" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6 text-right"> 
+                    <label class="control-label"></label>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div class="col-md-6 text-left"> 
+                    <label class="control-label"></label>
+                    <div class="form-group">
+                        <a asp-page="../DeskQuotes/Index" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="../DeskQuotes/Index">Cancel</a>
-</div>
+<style>
+    
+    .image-container {
+        margin-top: 1rem; 
+    }
+</style>
 
 <script>
     function changeImage(dropdown) {
@@ -84,7 +115,8 @@
     }
 </script>
 
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -20,7 +20,7 @@ namespace GenesisMegaDeskRazor.Pages.DeskQuotes
         [BindProperty]
         public DeskQuote DeskQuote { get; set; } = new DeskQuote();
 
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGetAsync()
         {
             string deskData = HttpContext.Session.GetString("DeskData");
             Desk = JsonConvert.DeserializeObject<Desk>(deskData);
