@@ -21,7 +21,11 @@
             Date
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DetailsData.Date)
+            @{
+                var date = Model.DetailsData.Date;
+                var formattedDate = date.ToString("yyyy-MM-dd");
+            }
+            @formattedDate
         </dd>
         <dt class="col-sm-2">
             Rush Order Days

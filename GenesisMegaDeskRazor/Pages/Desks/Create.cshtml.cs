@@ -50,11 +50,6 @@ namespace GenesisMegaDeskRazor.Pages.Desks
             if (ValidateDesk(Desk))
             {
                 HttpContext.Session.SetString("DeskData", JsonConvert.SerializeObject(Desk));
-                // _context.Desk.Add(Desk);
-                // await _context.SaveChangesAsync();
-                // var deskId = Desk.Id;
-
-                // string url = Url.Page("../DeskQuotes/Create", new { deskId = deskId });
 
                 return RedirectToPage("../DeskQuotes/Create");
             }

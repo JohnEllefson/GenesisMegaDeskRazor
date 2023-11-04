@@ -64,9 +64,6 @@ namespace GenesisMegaDeskRazor.Migrations
                     b.Property<double>("AdditionalSqInchCost")
                         .HasColumnType("float");
 
-                    b.Property<double>("BaseDeskPrice")
-                        .HasColumnType("float");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 

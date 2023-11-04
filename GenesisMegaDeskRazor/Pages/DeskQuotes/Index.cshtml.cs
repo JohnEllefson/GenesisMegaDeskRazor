@@ -14,16 +14,16 @@ using NuGet.Versioning;
 
 namespace GenesisMegaDeskRazor.Pages.DeskQuotes
 {
-    public struct QuoteRowData
+    public class QuoteRowData
     {
-        public int DeskQuoteId { get; set; } 
+        public int DeskQuoteId { get; set; }
         public string CustomerName { get; set; }
         public DateTime Date { get; set; }
-        public double RushOrderDays { get; set; }
+        public int RushOrderDays { get; set; }
         public DesktopMaterial DeskMaterial { get; set; }
-        public double DrawersNum { get; set; }
-        public double Width { get; set; }
-        public double Depth { get; set; }
+        public int DrawersNum { get; set; }
+        public int Width { get; set; }
+        public int Depth { get; set; }
         public double TotalPrice { get; set; }
     }
 
